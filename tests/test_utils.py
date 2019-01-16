@@ -1,3 +1,5 @@
+"""Test utils file."""
+
 import json
 import os
 
@@ -27,6 +29,7 @@ from tests.test_monitor import mocked_github_request
 
 @mock.patch('ghmonitor.monitor.github_request', side_effect=mocked_github_request)
 def test_create_monitors(github_request_function):
+    """Test create monitors function."""
     os.environ['WATCH_PACKAGES'] = 'k8s.io/metrics'
     monitors = create_monitors()
     m = monitors[0]
@@ -35,15 +38,19 @@ def test_create_monitors(github_request_function):
 
 
 class MockBackend(Backend):
+    """Just a testing backend."""
 
     def __init__(self):
+        """Construct it."""
         self.notifications = []
 
     def notify(self, notification_string):
+        """Store notifications in a list."""
         self.notifications += [notification_string]
 
 
 def mocked_get_new_events():
+    """Create dummy events."""
     i1 = Event()
     i1.type = EventType.ISSUE
     i1.id = 5
@@ -87,6 +94,7 @@ EXPECTED_PUSH_NOTIFICATION = """
 
 @mock.patch('ghmonitor.monitor.RepositoryMonitor.get_new_events', side_effect=mocked_get_new_events)
 def test_process_new_events(get_new_events):
+    """Test it all! Use all the prepared data from above."""
     monitor = RepositoryMonitor('k8s.io/metrics', 'kubernetes/metrics')
     monitor.seen_events = set()
     backend = MockBackend()
