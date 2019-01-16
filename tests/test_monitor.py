@@ -271,6 +271,7 @@ GITHUB_GET_REPOS_RESPONSE_KUBERNETES = """
 
 
 def mocked_github_request(url, **kwargs):
+    """Return predefined response."""
     if url.startswith('https://api.github.com/'):
         if '/repos/' in url and '/rust-lang/rust' in url:
             return 200, json.loads(GITHUB_GET_REPOS_RESPONSE)
@@ -288,11 +289,13 @@ def mocked_github_request(url, **kwargs):
 
 @mock.patch('ghmonitor.monitor.github_request', side_effect=mocked_github_request)
 def test_repository_exists(github_request_function):
+    """Test it."""
     assert monitor.repository_exists('rust-lang/rust') is True
     assert monitor.repository_exists('msehnout/go-lang-is-awesome') is False
 
 
 def test_get_auth_header():
+    """Test it."""
     os.environ['GITHUB_TOKEN'] = '123'
     assert monitor.get_auth_header() == {'Authorization': 'token 123'}
     os.environ.pop('GITHUB_TOKEN')
@@ -300,22 +303,26 @@ def test_get_auth_header():
 
 
 def test_get_list_of_repos():
+    """Test it."""
     os.environ['WATCH_REPOS'] = 'a/b c/d'
     assert monitor.get_list_of_repos() == ['a/b', 'c/d']
 
 
 def test_get_list_of_packages():
+    """Test it."""
     os.environ['WATCH_PACKAGES'] = 'a/b c/d'
     assert monitor.get_list_of_repos() == ['a/b', 'c/d']
 
 
 def test_github_request():
+    """Test it."""
     assert monitor.github_request('https://api.github.com/') is not None
     assert monitor.github_request('https://tramtadadaneexistujicidomena.redhat.com/') is None
     assert monitor.github_request('https://github.com/') is None
 
 
 def test_new_issues():
+    """Test set operations."""
     m = monitor.RepositoryMonitor('a', 'b')
     i1 = Event()
     i1.type = EventType.ISSUE

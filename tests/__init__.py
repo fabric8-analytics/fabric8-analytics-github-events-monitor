@@ -1,0 +1,1 @@
+"""Test ghmonitor module."""
