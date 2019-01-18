@@ -28,7 +28,7 @@ docker-build:
 	docker tag github-monitor $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG)
 
 coverage:
-	pytest --cov="ghmonitor/" --cov-report html:/tmp/cov_report -vv ghmonitor/
+	pytest --cov="ghmonitor/" --cov-report html:/tmp/cov_report -vv ghmonitor/ tests/
 
 deps:
 	pip-compile --output-file requirements.txt requirements.in

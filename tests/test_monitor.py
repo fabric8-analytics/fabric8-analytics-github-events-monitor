@@ -269,6 +269,11 @@ GITHUB_GET_REPOS_RESPONSE_KUBERNETES = """
 }
 """
 
+GITHUB_GET_REPOS_RESPONSE_NOT_FOUND = """{
+  "message": "Not Found",
+  "documentation_url": "https://developer.github.com/v3/repos/#get"
+}"""
+
 
 def mocked_github_request(url, **kwargs):
     """Return predefined response."""
@@ -282,7 +287,7 @@ def mocked_github_request(url, **kwargs):
         elif '/pulls/' in url:
             pass
         else:
-            return None
+            return 404, json.loads(GITHUB_GET_REPOS_RESPONSE_NOT_FOUND)
     else:
         return None
 
