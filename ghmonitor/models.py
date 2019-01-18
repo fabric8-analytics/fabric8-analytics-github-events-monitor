@@ -84,3 +84,6 @@ class Event:
         except KeyError:
             logger.error('Input dictionary does not contain required keys')
             return None
+        except TypeError:
+            logger.error('Malformed JSON input.')
+            return None

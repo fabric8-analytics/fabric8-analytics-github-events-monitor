@@ -36,3 +36,17 @@ def test_events_comparison():
     e0.type = EventType.PUSH
     e1.type = EventType.PUSH
     assert e0 == e1
+
+
+def test_event_from_non_valid_json():
+    """Test conversion failures."""
+    a = Event.from_dict({"id": "foo", "type": "PushEvent", "repo": {"name": "a"}})
+    assert a is None
+    a = Event.from_dict({"id": "222", "type": "FooEvent", "repo": {"name": "a"}})
+    assert a is None
+    a = Event.from_dict({"id": "222", "type": "PushEvent", "repo": ""})
+    assert a is None
+    a = Event.from_dict({"foo": "bar"})
+    assert a is None
+    a = Event.from_dict({"foo": "bar", "type": "11111555666666666661111155566666666666"})
+    assert a is None
