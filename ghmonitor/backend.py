@@ -15,7 +15,7 @@ class InvalidBackendClass(Exception):
 
 
 def get_backend_by_name(cls_str):
-    # type: (str) -> ghmonitor.Backend
+    # type: (str) -> Backend
     """
     Instantiate and return backend object.
 
