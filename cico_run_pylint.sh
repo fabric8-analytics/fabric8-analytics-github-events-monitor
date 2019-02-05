@@ -8,6 +8,9 @@ prep() {
     yum -y install python36u which
 }
 
+# this script is copied by CI, we don't need it
+rm -f env-toolkit
+
 prep
 ./detect-common-errors.sh
 ./detect-dead-code.sh
