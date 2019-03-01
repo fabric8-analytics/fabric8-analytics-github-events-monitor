@@ -4,7 +4,7 @@
  * map the names from the list to Github repositories (skip everyting else)
  * periodically scan events, that occured in the repositories
 
-Configuration:
+## Configuration:
  * use env. variables to configure Github token, repositories, log level and sleep period
  * in general you can use sth like this to find out what you can configure:
 ```bash
