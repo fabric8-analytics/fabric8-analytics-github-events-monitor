@@ -8,5 +8,10 @@ prep() {
     yum -y install python36u which
 }
 
+check_python_version() {
+    python3 tools/check_python_version.py 3 6
+}
+
 prep
+check_python_version
 ./check-docstyle.sh
