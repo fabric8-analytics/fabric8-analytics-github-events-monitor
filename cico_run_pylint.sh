@@ -5,7 +5,7 @@ set -ex
 prep() {
     yum -y update
     yum -y install epel-release https://centos7.iuscommunity.org/ius-release.rpm
-    yum -y install python36u which
+    yum -y install python36 which
 }
 
 check_python_version() {
