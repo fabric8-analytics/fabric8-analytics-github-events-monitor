@@ -21,7 +21,7 @@ get-testing-data:
 	curl https://api.github.com/events > events.json
 
 docker-run:
-	docker run -e LOGLEVEL="INFO" -e GITHUB_TOKEN="${GITHUB_TOKEN}" -e SLEEP_PERIOD=10 -e WATCH_REPOS="msehnout/ipc_example" github-monitor
+	docker run -e LOGLEVEL="INFO" -e GITHUB_TOKEN="${GITHUB_TOKEN}" -e SLEEP_PERIOD=10 -e WATCH_PACKAGES="k8s.io/metrics" github-monitor
 
 docker-build:
 	docker build -t github-monitor .
