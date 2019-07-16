@@ -33,6 +33,7 @@ def test_create_monitors(github_request_function):
     os.environ['WATCH_PACKAGES'] = 'k8s.io/metrics'
     monitors = create_monitors()
     m = monitors[0]
+    assert github_request_function is not None
     assert m.name == 'kubernetes/metrics'
     assert m.package == 'k8s.io/metrics'
 
@@ -95,6 +96,8 @@ EXPECTED_PUSH_NOTIFICATION = """
 @mock.patch('ghmonitor.monitor.RepositoryMonitor.get_new_events', side_effect=mocked_get_new_events)
 def test_process_new_events(get_new_events):
     """Test it all! Use all the prepared data from above."""
+    assert get_new_events is not None
+
     monitor = RepositoryMonitor('k8s.io/metrics', 'kubernetes/metrics')
     monitor.seen_events = set()
     backend = MockBackend()

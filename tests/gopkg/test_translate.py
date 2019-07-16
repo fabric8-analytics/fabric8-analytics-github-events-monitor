@@ -1,6 +1,6 @@
 """Test the gopkg module."""
 
-from ghmonitor.gopkg.translate import *
+from ghmonitor.gopkg.translate import get_repo_from_random_urn, translate, GITHUB_REPO_RE
 
 
 def test_get_repo_urn():
