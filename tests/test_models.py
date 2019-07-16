@@ -1,6 +1,6 @@
 """Test the awesome models."""
 
-from ghmonitor.models import *
+from ghmonitor.models import Event, UnknownEvent, EventType
 
 
 def test_event_types_from_str():

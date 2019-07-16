@@ -6,7 +6,7 @@ import os
 from unittest import mock
 
 from ghmonitor import monitor
-from ghmonitor.models import *
+from ghmonitor.models import Event, EventType
 
 GITHUB_GET_REPOS_RESPONSE = """
 {
@@ -275,7 +275,7 @@ GITHUB_GET_REPOS_RESPONSE_NOT_FOUND = """{
 }"""
 
 
-def mocked_github_request(url, **kwargs):
+def mocked_github_request(url, **_kwargs):
     """Return predefined response."""
     if url.startswith('https://api.github.com/'):
         if '/repos/' in url and '/rust-lang/rust' in url:
@@ -295,6 +295,7 @@ def mocked_github_request(url, **kwargs):
 @mock.patch('ghmonitor.monitor.github_request', side_effect=mocked_github_request)
 def test_repository_exists(github_request_function):
     """Test it."""
+    assert github_request_function is not None
     assert monitor.repository_exists('rust-lang/rust') is True
     assert monitor.repository_exists('msehnout/go-lang-is-awesome') is False
 

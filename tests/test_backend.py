@@ -11,6 +11,9 @@ from ghmonitor.backend import (
 @mock.patch('ghmonitor.backend.init_selinon')
 def test_get_backend_by_name(init_celery_mock, init_selinon_mock):
     """Test get_backend_by_name() function."""
+    assert init_celery_mock is not None
+    assert init_selinon_mock is not None
+
     backend = get_backend_by_name('LoggerBackend')
     assert isinstance(backend, LoggerBackend)
 
