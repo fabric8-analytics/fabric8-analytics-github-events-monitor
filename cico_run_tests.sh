@@ -6,7 +6,7 @@ here="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 . ${here}/cico_setup.sh
 
-${here}/run-tests.sh
+${here}/qa/run-tests.sh
 
 build_image
 
