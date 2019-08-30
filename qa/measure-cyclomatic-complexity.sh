@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+pushd "${SCRIPT_DIR}/.."
+
 function prepare_venv() {
     # we want tests to run on python3.6
     printf 'checking alias `python3.6` ... ' >&2
@@ -22,14 +26,16 @@ function prepare_venv() {
 
 [ "$NOVENV" == "1" ] || prepare_venv || exit 1
 
-python -m radon mi -s -i venv .
+python -m radon cc -s -a -i venv .
+
+popd
 
 if [[ "$1" == "--fail-on-error" ]]
 then
-    defects="$(radon mi -s -n B -i venv . | wc -l)"
+    defects="$(radon cc -s -n D -i venv . | wc -l)"
     if [[ $defects -gt 0 ]]
     then
-        echo "File(s) with too low maintainability index detected!"
+        echo "File(s) with too high cyclomatic complexity detected!"
         exit 1
     fi
 fi

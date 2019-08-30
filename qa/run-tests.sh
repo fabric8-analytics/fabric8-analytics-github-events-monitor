@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+pushd "${SCRIPT_DIR}/.." > /dev/null
+
 COVERAGE_THRESHOLD=90
 
 TERM=${TERM:-xterm}
@@ -46,3 +50,5 @@ pip install pytest pytest-cov
 
 # run tests
 pytest --cov="ghmonitor/" --cov-report term-missing --cov-fail-under=$COVERAGE_THRESHOLD -vv ghmonitor/ tests/ $@
+
+popd > /dev/null
