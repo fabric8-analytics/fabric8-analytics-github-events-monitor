@@ -18,19 +18,19 @@ graphviz==0.10.1          # via selinon
 idna==2.7                 # via requests
 jsonschema==2.6.0         # via selinon
 logutils==0.3.5           # via rainbow-logging-handler
-lxml==4.2.5               # via pyquery
+lxml==4.6.2               # via pyquery
 parse==1.9.0              # via requests-html
 pyee==5.0.0               # via pyppeteer
 pyppeteer==0.0.25         # via requests-html
 pyquery==1.4.0            # via requests-html
 pyyaml==3.13              # via selinon
 rainbow-logging-handler==2.2.2  # via selinon
-requests-html==0.9.0
-requests==2.20.1
-selinon==1.0.0
+requests-html==0.9.0      # via -r requirements.in
+requests==2.20.1          # via -r requirements.in, requests-html
+selinon==1.0.0            # via -r requirements.in
 six==1.11.0               # via w3lib
 tqdm==4.28.1              # via pyppeteer
-typing==3.6.6
+typing==3.6.6             # via -r requirements.in
 urllib3==1.24.1           # via pyppeteer, requests
 w3lib==1.19.0             # via requests-html
 websockets==7.0           # via pyppeteer
